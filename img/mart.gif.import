@@ -1,0 +1,15 @@
+[remap]
+
+importer="import_gif_to_sprite_frames"
+type="SpriteFrames"
+uid="uid://bgpanmw6v2wl0"
+path="res://.godot/imported/mart.gif-7d4226ebe69b89cc72e84d6e39bb76b9.tres"
+
+[deps]
+
+source_file="res://img/mart.gif"
+dest_files=["res://.godot/imported/mart.gif-7d4226ebe69b89cc72e84d6e39bb76b9.tres"]
+
+[params]
+
+frames_per_second=30

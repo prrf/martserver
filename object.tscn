@@ -1,0 +1,63 @@
+[gd_scene format=3 uid="uid://b612rwvnun6b8"]
+
+[ext_resource type="Script" uid="uid://c1arkkraxcwn" path="res://object.gd" id="1_3xuqs"]
+[ext_resource type="SpriteFrames" uid="uid://bgpanmw6v2wl0" path="res://img/mart.gif" id="2_3xuqs"]
+[ext_resource type="SpriteFrames" uid="uid://ck22vtdawdiv4" path="res://img/evilmart.gif" id="3_0i3lm"]
+[ext_resource type="SpriteFrames" uid="uid://brsl8pye62gad" path="res://img/explode.gif" id="4_dwaef"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0i3lm"]
+radius = 30.0
+height = 84.0
+
+[node name="Node2D" type="RigidBody2D" unique_id=1616032018 groups=["mart"]]
+gravity_scale = 0.5
+contact_monitor = true
+max_contacts_reported = 1000
+script = ExtResource("1_3xuqs")
+
+[node name="mart" type="AnimatedSprite2D" parent="." unique_id=2117666551]
+position = Vector2(8, 0)
+sprite_frames = ExtResource("2_3xuqs")
+animation = &"gif"
+
+[node name="evilmart" type="AnimatedSprite2D" parent="." unique_id=902933263]
+position = Vector2(-4, -5)
+scale = Vector2(0.646875, 0.646875)
+sprite_frames = ExtResource("3_0i3lm")
+animation = &"gif"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=545637254]
+position = Vector2(8, 11)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_0i3lm")
+
+[node name="Label" type="Label" parent="." unique_id=1684492765]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -124.0
+offset_top = -61.0
+offset_right = 125.0
+offset_bottom = -38.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Mart"
+horizontal_alignment = 1
+vertical_alignment = 1
+visible_characters = 30
+visible_ratio = 7.5
+
+[node name="Timer" type="Timer" parent="." unique_id=290322941]
+wait_time = 0.1
+one_shot = true
+autostart = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1334966528]
+visible = false
+sprite_frames = ExtResource("4_dwaef")
+animation = &"gif"
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="animation_looped" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_looped"]

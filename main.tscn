@@ -1,0 +1,62 @@
+[gd_scene format=3 uid="uid://bb3km3cnn33rg"]
+
+[ext_resource type="Script" uid="uid://cmqqhap3evrj4" path="res://main.gd" id="1_h2yge"]
+[ext_resource type="PackedScene" uid="uid://cnipjacyyrouy" path="res://cursor.tscn" id="2_0xm2m"]
+[ext_resource type="Script" uid="uid://dmr72as77u6w4" path="res://websocket.gd" id="4_1bvp3"]
+[ext_resource type="AudioStream" uid="uid://cfac24rl05h72" path="res://sfx/explosion.mp3" id="5_7mycd"]
+[ext_resource type="PackedScene" uid="uid://oumeaxs1o6e" path="res://hoop.tscn" id="5_lquwl"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_so4ep"]
+bounce = 0.5
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ig7tw"]
+normal = Vector2(1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_so4ep"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_0xm2m"]
+normal = Vector2(-1, 0)
+
+[node name="Root" type="Node2D" unique_id=808289419]
+script = ExtResource("1_h2yge")
+
+[node name="Boundary" type="Node2D" parent="." unique_id=1031224191]
+
+[node name="Left" type="StaticBody2D" parent="Boundary" unique_id=1271668103]
+physics_material_override = SubResource("PhysicsMaterial_so4ep")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Boundary/Left" unique_id=3730630]
+position = Vector2(0, 491)
+shape = SubResource("WorldBoundaryShape2D_ig7tw")
+
+[node name="Bottom" type="StaticBody2D" parent="Boundary" unique_id=1132260107 groups=["Floor"]]
+physics_material_override = SubResource("PhysicsMaterial_so4ep")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Boundary/Bottom" unique_id=250251462]
+position = Vector2(1040, 1032)
+shape = SubResource("WorldBoundaryShape2D_so4ep")
+
+[node name="Right" type="StaticBody2D" parent="Boundary" unique_id=907540638]
+physics_material_override = SubResource("PhysicsMaterial_so4ep")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Boundary/Right" unique_id=254325765]
+position = Vector2(1920, 510)
+shape = SubResource("WorldBoundaryShape2D_0xm2m")
+
+[node name="CharacterBody2D" parent="." unique_id=1400770565 instance=ExtResource("2_0xm2m")]
+
+[node name="Polygon2D" type="Polygon2D" parent="." unique_id=2083493859]
+position = Vector2(-1, -1)
+polygon = PackedVector2Array(1, 1, 1, -1, -1, -1, -1, 1)
+
+[node name="MartPoint" type="Node2D" parent="." unique_id=728537865]
+
+[node name="Node" type="Node" parent="." unique_id=1569113207]
+script = ExtResource("4_1bvp3")
+
+[node name="Node2D" parent="." unique_id=272816168 instance=ExtResource("5_lquwl")]
+position = Vector2(33, 156)
+scale = Vector2(0.2, 0.2)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=184496358]
+stream = ExtResource("5_7mycd")
