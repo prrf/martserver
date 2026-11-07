@@ -4,6 +4,8 @@
 [ext_resource type="SpriteFrames" uid="uid://bgpanmw6v2wl0" path="res://img/mart.gif" id="2_3xuqs"]
 [ext_resource type="SpriteFrames" uid="uid://ck22vtdawdiv4" path="res://img/evilmart.gif" id="3_0i3lm"]
 [ext_resource type="SpriteFrames" uid="uid://brsl8pye62gad" path="res://img/explode.gif" id="4_dwaef"]
+[ext_resource type="AudioStream" uid="uid://d2ao5k3a7vvyr" path="res://sfx/splat.mp3" id="5_m11qq"]
+[ext_resource type="Texture2D" uid="uid://b178vemi16o73" path="res://img/Timebomb.png" id="6_5lgxl"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0i3lm"]
 radius = 30.0
@@ -54,10 +56,19 @@ wait_time = 0.1
 one_shot = true
 autostart = true
 
+[node name="Timebomb" type="Sprite2D" parent="." unique_id=1369269496]
+visible = false
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("6_5lgxl")
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1334966528]
 visible = false
 sprite_frames = ExtResource("4_dwaef")
 animation = &"gif"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=409009413]
+stream = ExtResource("5_m11qq")
+volume_db = -20.0
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="animation_looped" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_looped"]

@@ -6,6 +6,7 @@ var named = "mart"
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	self.position = Vector2(randi_range(1,1920),540)
+	#$AudioStreamPlayer.play()
 	pass # Replace with function body.
 
 
@@ -15,7 +16,7 @@ func _process(delta: float) -> void:
 	var mitosis = randi_range(1,10000)
 	nametag.text = named
 
-	if random == 1000 and collides() == true:
+	if random == 1000:
 		var height = randi_range(-50000, -10000)
 		var sideforce = randi_range(-25000, 25000)
 		self.apply_force(Vector2(sideforce,height),Vector2(0,0))
@@ -53,6 +54,11 @@ func isevil():
 	if $Label.text.to_lower().contains("/kill @a"):
 		for i in get_parent().get_children():
 			Global.ismartexploding = true
+			Global.ismartexplodingsfx = true
+			$Timebomb.visible = true
+			$mart.visible = false
+			$evilmart.visible = false
+			$AnimatedSprite2D.scale = Vector2(10,10)
 	if $Label.text.to_lower().contains("evil"):
 		evil = true
 	if $Label.text.to_lower().contains("mart"):
